@@ -6,10 +6,13 @@ class KVue {
     }
     this.$data = option.data
     this.observe(this.$data)
-    new Watcher()
-    this.$data.title
-    new Watcher()
-    this.$data.foo.bar
+    // new Watcher()
+    // this.$data.title
+    // new Watcher()
+    // this.$data.foo.bar
+
+    // 传入#app 和 当前实例
+    new Compile(option.el, this)
   }
 
   // 接受一个对象 把对象中的属性全部劫持住
@@ -33,7 +36,7 @@ class KVue {
       get () {
         // 如果当前的静态方法存在的话
         // 把此Dep.target（当前新new的watcher加入dep.watcherList）
-        Dep.target && dep.addDep(Dep.target)
+        Dep.target && dep.addWatcher(Dep.target)
         return value
       },
       set (newValue) {
@@ -52,7 +55,7 @@ class Dep {
     this.watcherList = []
   }
 
-  addDep (watcher) {
+  addWatcher (watcher) {
     this.watcherList.push(watcher)
   }
 
