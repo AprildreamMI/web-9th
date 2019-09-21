@@ -9,6 +9,10 @@ const router = new Router({
   routes: [
     {
       path: '/',
+      redirect: '/home'
+    },
+    {
+      path: '/home',
       name: 'home',
       component: Home
     },
@@ -18,8 +22,13 @@ const router = new Router({
       component: () => import('./views/Login.vue')
     },
     {
-      path: '/about',
-      name: 'about',
+      path: '/cart',
+      name: 'cart',
+      component: () => import('./views/Cart.vue')
+    },
+    {
+      path: '/me',
+      name: 'me',
       component: () => import('./views/About.vue'),
       meta: {
         auth: true
