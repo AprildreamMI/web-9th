@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view />
+    <transition name="router-move">
+      <router-view />
+    </transition>
     <div class="tabBar">
       <cube-tab-bar
         v-model="selectedLabelDefault"
@@ -64,5 +66,19 @@ export default {
     left: 0;
     right: 0;
     box-shadow: 10px 10px 20px #888888;
+  }
+  // 入场前状态
+  .router-move-enter {
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  // 离场状态
+  .royte-move-leave-to {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  // 激活状态 已经正位
+  .router-move-enter-active, .router-move-leave-active {
+    transition: all 0.3s;
   }
 </style>
