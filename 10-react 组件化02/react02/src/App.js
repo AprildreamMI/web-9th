@@ -1,13 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-import HookTest from "./components/HookTest";
+// import HookTest from "./components/HookTest";
+import ContextTest from "./components/ContextTest";
 
 function App() {
   return (
     <div className="App">
-      <HookTest />
+      {/* Hook */}
+      {/*<HookTest />*/}
+      {/* 上下文 */}
+      <ContextTest />
     </div>
   );
 }
