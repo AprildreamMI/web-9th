@@ -39,17 +39,17 @@ function ContextTest(props) {
       <Provider value={{foo: 'foo'}} >
         {/* 第一种使用方法 Provider 和 Consumer 之间可以嵌套无数层 */}
         {/*<Consumer>
-          必须放在表达式中
-          {
-            value => <Child {...value} />
-          }
-        </Consumer>*/}
+            必须放在表达式中
+            {
+              value => <Child {...value} />
+            }
+          </Consumer>*/}
 
-      {/* 第二种方式 */}
-      {/*<Child2/>*/}
+        {/* 第二种方式 */}
+        {/*<Child2/>*/}
 
-      {/* 第三种方式 通过class 中定义静态的contextType接受myContext  */}
-      <Child3/>
+        {/* 第三种方式 通过class 中定义静态的contextType接受myContext  */}
+        <Child3/>
       </Provider>
     </div>
   );

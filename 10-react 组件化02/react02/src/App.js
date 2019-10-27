@@ -3,6 +3,8 @@ import './App.css';
 
 // import HookTest from "./components/HookTest";
 import ContextTest from "./components/ContextTest";
+import KForm from "./components/KForm";
+import ReduxTest from './components/ReduxTest'
 
 function App() {
   return (
@@ -10,7 +12,10 @@ function App() {
       {/* Hook */}
       {/*<HookTest />*/}
       {/* 上下文 */}
-      <ContextTest />
+      {/*<ContextTest />*/}
+      {/* 仿照antd 的 form */}
+      {/*<KForm />*/}
+      <ReduxTest />
     </div>
   );
 }
