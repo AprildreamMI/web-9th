@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 
+import { Provider } from 'react-redux'
+import store from '../src/store/index'
 // import HookTest from "./components/HookTest";
 import ContextTest from "./components/ContextTest";
 import KForm from "./components/KForm";
@@ -15,7 +17,9 @@ function App() {
       {/*<ContextTest />*/}
       {/* 仿照antd 的 form */}
       {/*<KForm />*/}
-      <ReduxTest />
+      <Provider store={ store }>
+        <ReduxTest />
+      </Provider>
     </div>
   );
 }
