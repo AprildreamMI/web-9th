@@ -4,9 +4,10 @@ import './App.css';
 import { Provider } from 'react-redux'
 import store from '../src/store/index'
 // import HookTest from "./components/HookTest";
-import ContextTest from "./components/ContextTest";
-import KForm from "./components/KForm";
-import ReduxTest from './components/ReduxTest'
+// import ContextTest from "./components/ContextTest";
+// import KForm from "./components/KForm";
+// import ReduxTest from './components/ReduxTest'
+import RouterSample from './components/RouterSample'
 
 function App() {
   return (
@@ -17,9 +18,12 @@ function App() {
       {/*<ContextTest />*/}
       {/* 仿照antd 的 form */}
       {/*<KForm />*/}
-      <Provider store={ store }>
+      {/*<Provider store={ store }>
         <ReduxTest />
-      </Provider>
+      </Provider>*/}
+      <RouterSample>
+
+      </RouterSample>
     </div>
   );
 }
