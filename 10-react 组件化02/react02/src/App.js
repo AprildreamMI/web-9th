@@ -21,9 +21,9 @@ function App() {
       {/*<Provider store={ store }>
         <ReduxTest />
       </Provider>*/}
-      <RouterSample>
-
-      </RouterSample>
+      <Provider store={ store }>
+        <RouterSample />
+      </Provider>
     </div>
   );
 }

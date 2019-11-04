@@ -1,6 +1,75 @@
 import React from 'react';
 // 用于浏览器的router
-import { BrowserRouter as Router, Link, Route, Switch, Redirect } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom'
+
+import { connect } from 'react-redux'
+
+import { login } from '../store/userReducer'
+
+// 路由守卫
+const PrivateRoute = connect(
+  // 映射store的state 到 props 必须返回一个对象
+  state => ({
+    isLogin: state.userReducer.isLogin
+  })
+)(
+  ({component: Com, isLogin, ...rest}) => {
+    return (
+      // Route 好像是一个槽 route-view
+      //  必须把component 从 props 中解构出来 因为 会于render 起冲突
+      <Route
+          { ...rest }
+          render = { props =>
+            // 如果登录了 返回这个需要渲染的组件
+            // 否则 重定向 接收一个对象 有重定向的地址及传递过去的参数
+            isLogin ?
+              <Com /> :
+              <Redirect
+                to={{
+                  pathname: '/login',
+                  state: {
+                    redirect: props.location.pathname
+                  }
+                }}
+              />
+          }
+        />
+    )
+  }
+);
+
+// 登录页面
+const Login = connect(
+  state => ({
+    isLogin: state.userReducer.isLogin,
+    loading: state.userReducer.loading
+  }),
+  { login }
+)(
+  ({ isLogin, loading, location, login }) => {
+    // 如果已经登录的话 直接去重定向页面
+    if (isLogin) {
+      console.log(location.state.redirect)
+      return <Redirect to={{
+        pathname: location.state.redirect
+      }}/>
+    }
+    return (
+      <div>
+        <p>登录页</p>
+        <button onClick={login} disabled={ loading }>
+          { loading? '登录中...' : '登录' }
+        </button>
+      </div>
+    )
+  }
+);
 
 // 首页组件
 function Home(props) {
@@ -115,6 +184,7 @@ function RouterSample(props) {
       <Router>
           <React.Fragment>
             <Link to={"/"}>首页</Link>
+            <span>   </span>
             <Link to={"/about"}>关于我们页</Link>
           </React.Fragment>
           {/*
@@ -125,8 +195,9 @@ function RouterSample(props) {
         <Switch>
           <Route exact path={"/"} component={ Home } />
           <Route exact path={"/details/:course"} component={ Details } />
+          <Route path={"/login"} component={ Login } />
           {/* 因为 about 有嵌套路由 所以 不能加上 exact */}
-          <Route path={"/about"} component={ About } />
+          <PrivateRoute path={"/about"} component={ About } />
           {/* 404 直接匹配 没有路径 在Switch 包裹的情况下 当其他匹配不到的时候 就会匹配他 */}
           <Route component={ NoPage } />
         </Switch>

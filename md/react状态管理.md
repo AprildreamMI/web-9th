@@ -29,11 +29,14 @@ export default store
 
 ### 在组件中使用
 
++ mapStateToProps 必须返回一个对象
++ mapStateToProps 返回带其模块的前缀（本列子中是 counterReducer ）
+
 ```javascript
 import React from 'react';
 import { connect } from 'react-redux'
 
-//把store中的state 映射给props
+//把store中的state 映射给props 
 const mapStateToProps = state => ({
     num: state
   }
