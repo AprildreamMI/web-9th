@@ -9,7 +9,8 @@ import reduxLogger from 'redux-logger'
 
 //把 count 这个 reducer 抽出来
 import { counterReducer } from './countReducer'
-import { userReducer } from './userReducer'
+// import { userReducer } from './userReducer'
+import { userReducerSaga } from './userReducerSaga'
 
 // 创建一下saga 的 中间件
 const sagaMiddleware = createSagaMiddlewate();
@@ -18,7 +19,7 @@ const sagaMiddleware = createSagaMiddlewate();
 const store = createStore(
   combineReducers({
     counterReducer,
-    userReducer
+    userReducerSaga
   }),
   applyMiddleware(
     // 先做日志记录 （控制台打印的日志）

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // 用于浏览器的router
 import {
   BrowserRouter as Router,
@@ -10,13 +10,13 @@ import {
 
 import { connect } from 'react-redux'
 
-import { login } from '../store/userReducer'
+import { login } from '../store/userReducerSaga'
 
 // 路由守卫
 const PrivateRoute = connect(
   // 映射store的state 到 props 必须返回一个对象
   state => ({
-    isLogin: state.userReducer.isLogin
+    isLogin: state.userReducerSaga.isLogin
   })
 )(
   ({component: Com, isLogin, ...rest}) => {
@@ -47,12 +47,14 @@ const PrivateRoute = connect(
 // 登录页面
 const Login = connect(
   state => ({
-    isLogin: state.userReducer.isLogin,
-    loading: state.userReducer.loading
+    isLogin: state.userReducerSaga.isLogin,
+    loading: state.userReducerSaga.loading,
+    error: state.userReducerSaga.error
   }),
   { login }
 )(
-  ({ isLogin, loading, location, login }) => {
+  ({ isLogin, loading, location, login, error }) => {
+    let [username, setUserNmae] = useState('')
     // 如果已经登录的话 直接去重定向页面
     if (isLogin) {
       console.log(location.state.redirect)
@@ -64,7 +66,12 @@ const Login = connect(
       <div>
         <p>登录页</p>
         <hr/>
-        <button onClick={login} disabled={ loading }>
+        { error && <p>{ error }</p> }
+        <input
+          type="text"
+          value={ username }
+          onChange={ e => setUserNmae(e.target.value) } />
+        <button onClick={_ => login(username)} disabled={ loading }>
           { loading? '登录中...' : '登录' }
         </button>
       </div>

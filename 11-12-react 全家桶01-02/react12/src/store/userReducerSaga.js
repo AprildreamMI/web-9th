@@ -1,6 +1,7 @@
 const init = {
   isLogin: false,
-  loading: false
+  loading: false,
+  error: ''
 };
 
 export const userReducerSaga = (state = init, action) => {
@@ -13,10 +14,16 @@ export const userReducerSaga = (state = init, action) => {
         isLogin: false,
         loading: true
       };
-    case 'login':
+    case 'loginSuccess':
       return {
         isLogin: true,
-        loading: true
+        loading: false
+      };
+    case 'loginFailure':
+      return {
+        isLogin: false,
+        loading: false,
+        error: '登录失败'
       };
     default:
       return state
@@ -26,9 +33,7 @@ export const userReducerSaga = (state = init, action) => {
 
 // 可以把action 单独抽出来 给到一个单独的文件里面去
 
-// 一个函数 返回一个异步函数 当redux 接受到此函数的时候，处理不了，交给
-
-// redux-thunk 此处理异步函数中间件来处理
+// 此login 会被 saga 监听到
 export const login = (username) => ({
   type: 'login',
   username
