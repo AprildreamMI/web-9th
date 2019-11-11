@@ -3,8 +3,9 @@ import { Router as DefaultRouter, Route, Switch } from 'react-router-dom';
 import dynamic from 'umi/dynamic';
 import renderRoutes from 'umi/lib/renderRoutes';
 import history from '@tmp/history';
+import { routerRedux } from 'dva';
 
-const Router = DefaultRouter;
+const Router = routerRedux.ConnectedRouter;
 
 const routes = [
   {
@@ -41,7 +42,7 @@ const routes = [
           React.createElement(
             require('C:/Users/11599/Documents/开课吧学习/web全栈第九期自学/11-12-react 全家桶01-02/umi-test/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
               .default,
-            { pagesPath: 'pages', hasRoutesInConfig: true },
+            { pagesPath: 'src/pages', hasRoutesInConfig: true },
           ),
       },
     ],
@@ -51,7 +52,7 @@ const routes = [
       React.createElement(
         require('C:/Users/11599/Documents/开课吧学习/web全栈第九期自学/11-12-react 全家桶01-02/umi-test/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
           .default,
-        { pagesPath: 'pages', hasRoutesInConfig: true },
+        { pagesPath: 'src/pages', hasRoutesInConfig: true },
       ),
   },
 ];
