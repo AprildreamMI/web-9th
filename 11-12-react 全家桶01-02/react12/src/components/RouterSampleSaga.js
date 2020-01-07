@@ -24,22 +24,22 @@ const PrivateRoute = connect(
       // Route 好像是一个槽 route-view
       //  必须把component 从 props 中解构出来 因为 会于render 起冲突
       <Route
-          { ...rest }
-          render = { props =>
-            // 如果登录了 返回这个需要渲染的组件
-            // 否则 重定向 接收一个对象 有重定向的地址及传递过去的参数
-            isLogin ?
-              <Com /> :
-              <Redirect
-                to={{
-                  pathname: '/login',
-                  state: {
-                    redirect: props.location.pathname
-                  }
-                }}
-              />
-          }
-        />
+        { ...rest }
+        render = { props =>
+          // 如果登录了 返回这个需要渲染的组件
+          // 否则 重定向 接收一个对象 有重定向的地址及传递过去的参数
+          isLogin ?
+            <Com /> :
+            <Redirect
+              to={{
+                pathname: '/login',
+                state: {
+                  redirect: props.location.pathname
+                }
+              }}
+            />
+        }
+      />
     )
   }
 );
