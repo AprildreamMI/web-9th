@@ -1,0 +1,17 @@
+{
+  "name": "node-mysql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fsdb.js",
+  "dependencies": {
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
